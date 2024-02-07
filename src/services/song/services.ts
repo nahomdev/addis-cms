@@ -8,6 +8,7 @@ import { type Song } from '../../types/songs';
 interface SongServiceOperators {
     songs: Song[];
     fetchAllSongs: () => void;
+    createSong: (song:Song) => void;
 }
 
 const useSongService = (): Readonly<SongServiceOperators> => {
@@ -15,7 +16,7 @@ const useSongService = (): Readonly<SongServiceOperators> => {
 
     return {
         songs: useAppSelector(selectSongs),
-       
+        createSong: useCallback(() => { dispatch(songActions.createSong)}, [dispatch]),
         fetchAllSongs: useCallback(() => {
             dispatch(songActions.fetchAllisLoading());
             dispatch(songActions.fetchAll());

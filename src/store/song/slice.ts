@@ -49,6 +49,14 @@ export const songsSlice = createSlice({
         state.error = action.payload;
         state.loading = false;
         },
+
+         createSongLoading(state) {
+      state.loading = true;
+        },
+        createSongFailure(state, action: PayloadAction<string>) {
+        state.error = action.payload;
+        state.loading = false;
+        },
     },
 });
 
@@ -65,6 +73,12 @@ export const songActions = {
     updateSongLoading: songsSlice.actions.updateSongLoading,
     updateSongSucceeded: songsSlice.actions.updateSongSucceeded,
     updateSongFailure: songsSlice.actions.updateSongFailure,
+
+
+    //create
+    createSong: createAction<PayloadAction<Song>>(`${songsSlice.name}/create`),
+    createSongLoading: songsSlice.actions.createSongLoading, 
+    createSongFailure: songsSlice.actions.createSongFailure,
 };
 
 // Selectors
